@@ -1,3 +1,20 @@
+/*This code defines a class Solution with a member function named findKthPositive that takes two arguments: a vector of integers called arr, and an integer called k. The function returns the kth missing positive integer in the array arr.
+
+*The implementation works as follows:
+
+*An array of 1001 integers called visited is initialized to all zeros. This array is used to keep track of which numbers in the range [1, 1000] are present in the input array arr.
+
+*The input array arr is looped over using a range-based for loop, and for each element i in the array arr, the corresponding entry visited[i] in the visited array is set to 1.
+
+*Another loop is used to iterate over the integers in the range [1, 1000]. For each integer i in this range, if the corresponding entry visited[i] in the visited array is not 1 (i.e., if the integer i is missing from the input array arr), the variable count is incremented by 1.
+
+*If count becomes equal to k, the function returns i (i.e., the kth missing positive integer in the input array arr).
+
+*If the loop completes without finding the kth missing positive integer, the function returns k-count+i-1, which is the kth missing positive integer that is greater than the largest element in the input array arr.
+
+*It is important to note that the implementation assumes that the input array arr contains only positive integers, and that the maximum value of any element in the array is 1000. If these assumptions are not met, the function may not behave correctly. Additionally, the implementation uses an array of fixed size, which may not be efficient if the input array arr is very large.
+*/
+
 class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
@@ -16,3 +33,11 @@ public:
         return k-count+i-1;
     }
 };
+
+//Time complexity:
+//The given code has two loops. The first loop that fills the visited array takes O(n) time where n is the size of the input array arr. The second loop that checks for missing positive integers runs for 1000 iterations, so its time complexity is O(1000) or O(1). Therefore, the overall time complexity of the function is O(n).
+
+//Space complexity:
+//The function uses an array of size 1001 to keep track of visited integers. Therefore, the space complexity of the function is O(1001) or O(1), as the size of the visited array does not depend on the size of the input array arr.
+
+//In summary, the given code has a time complexity of O(n) and a space complexity of O(1)
