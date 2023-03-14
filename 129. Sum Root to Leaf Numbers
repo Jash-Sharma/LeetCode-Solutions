@@ -1,0 +1,46 @@
+/*
+The code defines a C++ class Solution that contains two methods:
+
+traverse method:
+This method takes two arguments: the root of the binary tree and the sum of the path so far. The method uses a depth-first search (DFS) algorithm to traverse the binary tree and calculates the sum of each root-to-leaf path.
+
+If the root is not NULL, the method checks if it has a left child. If so, it adds the value of the left child to the current sum, multiplies it by 10 to shift the digits to the left, and recursively calls the traverse method on the left child.
+Then, the method checks if the root has a right child. If so, it adds the value of the right child to the current sum, multiplies it by 10 to shift the digits to the left, and recursively calls the traverse method on the right child.
+If the root is a leaf node (i.e., it has no left or right child), the method adds the current sum to the total variable, which keeps track of the total sum of all root-to-leaf paths.
+
+sumNumbers method:
+This method takes the root of the binary tree as an argument and calls the traverse method on the root with the initial sum value set to the root value. It then returns the total variable, which contains the sum of all root-to-leaf paths.
+
+Overall, the sumNumbers method uses the traverse method to traverse the binary tree and calculate the sum of all root-to-leaf paths. The time complexity of this solution is O(N), where N is the number of nodes in the binary tree, because each node is visited once. The space complexity is O(H), where H is the height of the binary tree, because the recursion stack can have at most H frames.
+*/
+
+class Solution {
+public:
+    int total = 0;
+    void traverse(TreeNode* root,int sum) {
+        if(root){
+            if(root->left){
+                sum = sum*10 + root->left->val;
+                traverse(root->left,sum);
+                sum = sum/10;
+            }
+            if(root->right){
+                sum = sum*10 + root->right->val;
+                traverse(root->right,sum);
+                sum = sum/10;
+            }
+            if(!root->right && !root->left){
+                total += sum;
+                return;
+            }
+            
+        }
+    }
+    int sumNumbers(TreeNode* root) {
+        int sum=root->val;
+        traverse(root,sum);
+        return total;
+    }
+};
+
+Link to the question : https://leetcode.com/problems/sum-root-to-leaf-numbers/description/
