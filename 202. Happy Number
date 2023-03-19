@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        int sum = 0;
+        while(sum>=0){
+            for(int i=n;i!=0;i/=10) {
+                sum+=pow(i%10,2);
+            }
+            if(sum == 1)
+                return true;
+            else if(sum == 2 || sum == 3 || sum == 4|| sum == 5)
+                return false;
+            n = sum;
+            sum = 0;  
+        } 
+        return false;
+    }
+};
+
+The time complexity of the "isHappy" function is O(log n) in the worst-case scenario, where "n" is the input number. This is because the number of digits in "n" is proportional to log(n) in base 10, and for each digit, the function performs a constant amount of work.
+
+The space complexity of the "isHappy" function is constant, O(1), since it only uses a fixed amount of memory to store the "sum" variable and loop control variables.
+
